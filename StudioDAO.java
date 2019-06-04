@@ -86,7 +86,7 @@ public class StudioDAO implements iStudioDAO {
 			String sql = "select studio_id, studio_name, studio_row_count, studio_col_count, studio_introduction from studio ";
 			condt.trim();
 			if(!condt.isEmpty())
-				sql+= " where " + condt;
+				sql+= " where studio_id= " + condt;
 			DBUtil db = new DBUtil();
 			if(!db.openConnection()){
 				System.out.print("fail to connect database");

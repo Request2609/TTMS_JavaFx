@@ -13,8 +13,7 @@ public class DAOFactory {
 	public static MovieDao createMovieDao() {
 		return new MovieDao() ;
 	}
+	public static ScheduleDao createScheduleDao(){return new ScheduleDao() ;}
+	public static TypeDao createTypeDao() {return new TypeDao();} ;
 
-//	public static SeatDao createSeatDao() {
-//		return new SeatDao() ;
-//	}
 }

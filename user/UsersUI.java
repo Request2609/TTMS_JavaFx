@@ -11,10 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import xupt.se.ttms.SceneStyle.SetSceneStyle;
 import xupt.se.ttms.model.Employee;
 import xupt.se.ttms.model.Studio;
 import xupt.se.ttms.service.LoginedUser;
 import xupt.se.ttms.service.StudioSrv;
+import xupt.se.ttms.view.Movie.MovieManageUI;
 import xupt.se.ttms.view.Plan.PlanArangeUI;
 import xupt.se.ttms.view.studio.ManageStudio;
 import xupt.se.ttms.view.studio.ProcessStudioUI;
@@ -27,6 +29,7 @@ public class UsersUI extends Application {
     Scene sne ;
     List<Employee>list ;
     GridPane grid ;
+    Scene changeSnes ;
     Stage userWindow ;
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -80,7 +83,7 @@ public class UsersUI extends Application {
 
     }
 
-    public void getStuioManagerSne(Employee user, Stage win) {
+    public void getStudioManagerSne(Employee user, Stage win) {
         userWindow = win ;
         Scene s = getStudioSne(user) ;
         s.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
@@ -160,36 +163,58 @@ public class UsersUI extends Application {
         quit.setOnMouseClicked(e->{
             userWindow.close() ;
         });
+
         quit.setMinSize(150,40);
         Button managemv = new Button("剧目管理") ;
-        managemv.setMinSize(150,40);
-        managemv.setOnMouseClicked(e->{
+        Button ticket = new Button("演出票管理") ;
 
+        managemv.setMinSize(150,40);
+        MovieManageUI mm = new MovieManageUI() ;
+
+        managemv.setMinSize(150,40);
+        Button b= new Button("返回上一页") ;
+        Scene mvSnes = mm.getMovieSne(user,b, userWindow) ;
+        managemv.setOnAction(e->{
+            SetSceneStyle.sceneStyle(mvSnes) ;
+            userWindow.setScene(mvSnes);
+        });
+
+        b.setOnAction(e->{
+            Scene s = getStudioSne(users) ;
+            SetSceneStyle.sceneStyle(s);
+            userWindow.setScene(s);
+        });
+
+        Button b1 = new Button("返回上一页") ;
+        Button plan = new Button("演出计划管理");
+        plan.setMinSize(150,40);
+        PlanArangeUI pl = new PlanArangeUI() ;
+        Scene sne1= pl.getPlanSne(users, b1, userWindow);
+        b1.setOnAction(e->{
+            Scene s = getStudioSne(users) ;
+            SetSceneStyle.sceneStyle(s);
+            userWindow.setScene(s);
+        });
+
+        plan.setOnAction(e-> {
+            SetSceneStyle.sceneStyle(sne1);
+            userWindow.setScene(sne1);
         });
 
         Button refresh =  new Button("刷新页面") ;
         refresh.setOnMouseClicked(e->{
             Scene s = getStudioSne(users) ;
             userWindow.setScene(s);
-            s.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+            SetSceneStyle.sceneStyle(s);
             userWindow.show() ;
         });
-        managemv.setMinSize(150,40);
-        Button plan = new Button("安排演出计划");
-        plan.setMinSize(150,40);
 
-        plan.setOnMouseClicked(e->{
-            userWindow.setTitle("安排演出计划");
-            PlanArangeUI plans = new PlanArangeUI();
-            plans.getPlanSne(userWindow, user) ;
-        });
 
         HBox hb = new HBox() ;
         hb.setPadding(new Insets(20,20,20,20)) ;
         hb.setSpacing(10);
         hb.setAlignment(Pos.CENTER);
-        hb.getChildren().addAll(add, quit, managemv, refresh, plan);
-
+        hb.getChildren().addAll(add, quit, managemv, refresh, plan, ticket);
 
         bord.setTop(vb);
         bord.setBottom(hb);
@@ -210,7 +235,7 @@ public class UsersUI extends Application {
         studio.delete(s.getID()) ;
         Scene ss = getStudioSne(users) ;
         userWindow.setScene(ss);
-        ss.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+        SetSceneStyle.sceneStyle(ss);
         userWindow.show() ;
     }
 
@@ -220,7 +245,7 @@ public class UsersUI extends Application {
         userWindow = stage ;
         //放置button的地方
         userWindow.setScene(updateScene(user));
-        sne.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+        SetSceneStyle.sceneStyle(sne);
         userWindow.setScene(sne);
     }
 
@@ -229,7 +254,7 @@ public class UsersUI extends Application {
         int ret = user.delete(uu.getId()) ;
         if(ret != 0) {
             Scene s = updateScene(uu) ;
-            sne.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+            SetSceneStyle.sceneStyle(s);
             userWindow.setScene(s);
             userWindow.show() ;
         }
@@ -243,7 +268,7 @@ public class UsersUI extends Application {
     public void modifyUserInfo(Employee user){
 
         Scene s = updateScene(user) ;
-        sne.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+        SetSceneStyle.sceneStyle(sne);
         userWindow.setScene(s);
         userWindow.show() ;
     }
@@ -297,18 +322,16 @@ public class UsersUI extends Application {
             Employee uu = new Employee() ;
             sce.addUser(uu);
             Scene s  = updateScene(users);
-            s.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+            SetSceneStyle.sceneStyle(s);
             userWindow.setScene(s);
             userWindow.show();
         });
 
         update.setOnAction(e->{
             Scene s = updateScene(users) ;
-            s.getStylesheets().add(LoginUI.class.getResource("Style.css").toExternalForm());
+            SetSceneStyle.sceneStyle(s);
             userWindow.setScene(s);
             userWindow.show() ;
         });
-
-
     }
 }

@@ -13,7 +13,7 @@ public class MovieDao implements iMovieDao {
     public List<Movie> select(String condt) {
         List<Movie> list  = new LinkedList<Movie>() ;
         try {
-            String sql = "select play_id, play_name, play_introduction, play_ticket_price, play_status, path, play_length,play_type from play ";
+            String sql = "select play_type_id, play_id, play_name, play_introduction, play_ticket_price, play_status, path, play_length,play_type from play ";
             condt.trim();
             if(!condt.isEmpty())
                 sql+= " where " + condt;
@@ -37,6 +37,8 @@ public class MovieDao implements iMovieDao {
                     play.setPlay_introduction(rst.getString("play_introduction"));
                     play.setPlay_status(rst.getInt("play_status")) ;
                     play.setPlay_type(rst.getString("play_type"));
+                    play.setPlay_ticket_price(rst.getInt("play_ticket_price"));
+                    play.setPlay_type_id(rst.getInt("play_type_id")) ;
                     list.add(play) ;
                 }
             }
@@ -51,5 +53,36 @@ public class MovieDao implements iMovieDao {
         //返回链表
         return list;
     }
-
+    @Override
+    public int delete(int id) {
+        int rtn=0;
+        try{
+            String sql = "delete from  play";
+            sql += " where play_id = " + id ;
+            DBUtil db = new DBUtil();
+            db.openConnection();
+            rtn=db.execCommand(sql);
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rtn;
+    }
+    @Override
+    public int modify(Movie mv) {
+        int rtn=0;
+        try{
+            String sql = "update play set play_name= '"+mv.getPlay_name()+"'"+
+                    " , play_status ="+mv.getPlay_status()+", play_introduction= '"+mv.getPlay_introduction()+"',"
+                    +"play_type='"+mv.getPlay_type()+"',"+"play_ticket_price ="+mv.getPlay_ticket_price()+", path='"+
+                    mv.getPath()+"' "+"where play_id = "+mv.getPlay_id();
+            DBUtil db = new DBUtil();
+            db.openConnection();
+            rtn=db.execCommand(sql);
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rtn;
+    }
 }

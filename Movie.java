@@ -6,14 +6,8 @@ public class Movie {
     //种类的id
     int play_type_id ;
 
-    public String getPlay_type() {
-        return play_type;
-    }
 
-    public void setPlay_type(String play_type) {
-        this.play_type = play_type;
-    }
-
+    int play_ticket_price ;
     String play_type ;
     //时长（分钟）
     int play_Length ;
@@ -26,6 +20,23 @@ public class Movie {
     String path ;
 
     int play_status ;
+
+
+    public String getPlay_type() {
+        return play_type;
+    }
+
+    public void setPlay_type(String play_type) {
+        this.play_type = play_type;
+    }
+
+    public int getPlay_ticket_price() {
+        return play_ticket_price;
+    }
+
+    public void setPlay_ticket_price(int play_ticket_price) {
+        this.play_ticket_price = play_ticket_price;
+    }
 
     public void setPlay_status(int play_status) {
         this.play_status = play_status;

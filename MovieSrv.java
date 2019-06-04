@@ -14,5 +14,26 @@ public class MovieSrv {
         List<Movie>list = movie.select("") ;
         return list ;
     }
+    public Movie select(int id) {
+        MovieDao movie = DAOFactory.createMovieDao() ;
+        //获取所有影片信息
+        List<Movie>list = movie.select(" play_id = "+id) ;
+        Movie mo  = null ;
+        for(Movie m:list){
+            mo = m ;
+        }
+        return mo ;
+    }
+
+    public int delete(int id) {
+        MovieDao md = new MovieDao() ;
+        return md.delete(id) ;
+    }
+
+    public int modify(Movie mv) {
+        MovieDao md = new MovieDao() ;
+        return md.modify(mv) ;
+    }
+
 
 }

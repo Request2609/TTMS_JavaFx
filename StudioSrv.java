@@ -22,8 +22,14 @@ public class StudioSrv {
 		return stuDAO.delete(ID); 		
 	}
 	
-	public List<Studio> Fetch(String condt){
-		return stuDAO.select(condt);		
+	public Studio Fetch(String condt){
+
+		List<Studio>list  = stuDAO.select(condt);
+		Studio s  = new Studio() ;
+		for(Studio ss: list) {
+			s = ss ;
+		}
+		return s ;
 	}
 	
 	public List<Studio> FetchAll(){

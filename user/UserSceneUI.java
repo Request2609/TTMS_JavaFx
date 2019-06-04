@@ -217,7 +217,7 @@ public class UserSceneUI extends Application {
                 ui.getSaleSne(user, windows) ;
             }
             else {
-                ui.getStuioManagerSne(user, windows) ;
+                ui.getStudioManagerSne(user, windows) ;
             }
         }
 
