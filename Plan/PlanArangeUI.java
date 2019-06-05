@@ -18,12 +18,10 @@ import xupt.se.ttms.model.Studio;
 import xupt.se.ttms.service.MovieSrv;
 import xupt.se.ttms.service.ScheduleSrv;
 import xupt.se.ttms.service.StudioSrv;
+import xupt.se.ttms.view.Ticket.TicketProcessUI;
 import xupt.se.ttms.view.user.ConfirmBox;
 import xupt.se.ttms.view.user.LoginUI;
-import xupt.se.ttms.view.user.UserSceneUI;
-import xupt.se.ttms.view.user.UsersUI;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +51,7 @@ public class PlanArangeUI {
         g.add(new Text("电影名称"), 3,1);
         g.add(new Text("演出安排时间"), 4,1);
         g.add(new Text("票价"),5,1) ;
+//        g.add(new Text(), )
         int row = 2 ;
         int col = 1 ;
 
@@ -109,7 +108,7 @@ public class PlanArangeUI {
         //获取所有演出计划信息
         for(Schedule s: list) {
             MovieSrv m = new MovieSrv() ;
-            Movie mm = m.select(s.getPlay_id()) ;
+            Movie mm = m.select("play_id = "+s.getPlay_id()) ;
             if(mm != null) {
                 System.out.println(mm.getPlay_name()) ;
             }
@@ -127,16 +126,15 @@ public class PlanArangeUI {
         bk = back ;
         users = user ;
         win = userWindow ;
-        HBox h = new HBox();
+
         VBox v=new VBox();
+        v.setAlignment(Pos.CENTER);
 
         BorderPane bord = new BorderPane() ;
 
-        h.setAlignment(Pos.CENTER);
         lb=new Label("当前经理:"+user.getName()+"  ID:"+user.getId()+"   当前演出计划表") ;
-        lb.setStyle("-fx-background-color: #987;");
-        h.setAlignment(Pos.CENTER);
-        h.getChildren().add(lb) ;
+        lb.setStyle("-fx-background-color: #987;-fx-font-size: 30 ;");
+
 
         GridPane g = setGrid() ;
         v.getChildren().addAll(lb, g) ;
@@ -182,10 +180,12 @@ public class PlanArangeUI {
     }
 
     public void makeTickets() {
-
+        TicketProcessUI tp  = new TicketProcessUI() ;
+        tp.addTicket();
     }
 
     public void querySchedule() {
-
+        ProcessSchedUI ps = new ProcessSchedUI() ;
+        ps.querySched();
     }
 }

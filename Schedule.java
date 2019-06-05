@@ -6,8 +6,9 @@ public class Schedule {
     int sche_id ;
     int studio_id ;
     int play_id ;
-    Date sched_time;
+    String sched_time;
     int sched_ticket_price ;
+
 
     public int getSche_id() {
         return sche_id;
@@ -33,11 +34,11 @@ public class Schedule {
         this.play_id = play_id;
     }
 
-    public Date getSched_time() {
+    public String getSched_time() {
         return sched_time;
     }
 
-    public void setSched_time(Date sched_time) {
+    public void setSched_time(String sched_time) {
         this.sched_time = sched_time;
     }
 

@@ -1,14 +1,34 @@
 package xupt.se.ttms.model;
 
+import java.sql.Date;
+
 public class Ticket {
 	
 	private int ticket_id;
 	private int movie_id;
 	private int seat_id;
 	private String ticket_date;
-	private int ticket_times;
+	private int ticket_locked_time;
 	private int ticket_sold;
-	
+	int ticket_price ;
+	int sched_id ;
+
+	public int getTicket_price() {
+		return ticket_price;
+	}
+
+	public void setTicket_price(int ticket_price) {
+		this.ticket_price = ticket_price;
+	}
+
+	public int getSched_id() {
+		return sched_id;
+	}
+
+	public void setSched_id(int sched_id) {
+		this.sched_id = sched_id;
+	}
+
 	public int getTicket_id() {
 		return ticket_id;
 	}
@@ -30,14 +50,14 @@ public class Ticket {
 	public String getTicket_date() {
 		return ticket_date;
 	}
-	public void setTicket_date(String ticket_date) {
+	public void  setTicket_date(String ticket_date) {
 		this.ticket_date = ticket_date;
 	}
-	public int getTicket_times() {
-		return ticket_times;
+	public int getTicket_locked_time() {
+		return ticket_locked_time;
 	}
-	public void setTicket_times(int ticket_times) {
-		this.ticket_times = ticket_times;
+	public void setTicket_locked_times(int ticket_locked_time) {
+		this.ticket_locked_time = ticket_locked_time;
 	}
 	public int getTicket_sold() {
 		return ticket_sold;

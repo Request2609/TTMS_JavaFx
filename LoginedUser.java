@@ -63,8 +63,11 @@ public class LoginedUser extends Employee {
 	public boolean findPass(Employee uu) {
 
 		UserDao uDao = DAOFactory.creatUserDAO() ;
-		Employee user = new Employee();
+		Employee user ;
 		user= uDao.verify(uu);
+
+		System.out.println("当前用户的信息:"+user.toString()) ;
+		System.out.println("之前用户的信息:"+uu.toString()) ;
 
 		if(user == null) {
 			return false ;
@@ -72,8 +75,8 @@ public class LoginedUser extends Employee {
 
 		if(user.getName().equals(uu.getName())
 				&&user.getTel().equals(uu.getTel())){
-			uu = user ;
-			int ret = uDao.modify(uu);
+			user.setPassword(uu.getPassword());
+			int ret = uDao.modify(user);
 			if(ret == 0) {
 				return false ;
 			}

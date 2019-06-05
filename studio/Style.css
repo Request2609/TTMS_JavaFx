@@ -1,7 +1,7 @@
 .root{
     -fx-background-color: #928;
     -fx-font-size:20 ;
-    -fx-background-image: url(2.jpg);
+    -fx-background-image: url(../Plan/2.jpg);
     -fx-background-size:cover;
 }
 

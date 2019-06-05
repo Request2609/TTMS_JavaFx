@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import xupt.se.ttms.SceneStyle.SetSceneStyle;
 import xupt.se.ttms.model.Employee;
 import xupt.se.ttms.service.LoginedUser;
 
@@ -69,6 +70,7 @@ public class FindPassScene extends Application {
         hb.getChildren().addAll(confirm, cancer) ;
         vb.getChildren().addAll(name, newPassword, pnum, hb) ;
         sne = new Scene(vb, 400, 400) ;
+        SetSceneStyle.sceneStyle(sne);
         window.setScene(sne);
         window.show();
     }
@@ -81,6 +83,7 @@ public class FindPassScene extends Application {
                   con.displaySuccess("请输入完整信息！");
                   return false;
               }
+
               user.setName(name.getText()) ;
               user.setTel(pnum.getText());
               user.setPassword(pass.getText());

@@ -38,8 +38,9 @@ public class MovieManageUI {
         vb.setPadding(new Insets(20));
         vb.setSpacing(20);
 
-        Label title = new Label("剧目管理+"+"  当前经理:"+user.getName()+"  ID:"+user.getId()) ;
-        title.setStyle("-fx-background-color: #987; -fx-font-size: 15");
+        Label title = new Label("当前经理:"+user.getName()+"  ID:"+user.getId()) ;
+//        title.setStyle("-fx-font-size: 50;");
+        title.setStyle("-fx-background-color: #987; -fx-font-size: 30");
         GridPane g = getMovieList() ;
         vb.getChildren().addAll(title, g) ;
         bord.setTop(vb) ;
@@ -48,20 +49,37 @@ public class MovieManageUI {
         hb.setSpacing(20);
         hb.setPadding(new Insets(20)) ;
         Button add = new Button("添加剧目") ;
+        add.setOnMouseClicked(e->{
+            addMovie() ;
+        });
         Button fresh = new Button("刷新页面") ;
+        fresh.setOnMouseClicked(e->{
+            Scene s= getMovieSne(user, back, userWindow) ;
+            SetSceneStyle.sceneStyle(s);
+            userWindow.setScene(s);
+        });
         Button query = new Button("查询剧目") ;
+        query.setOnMouseClicked(e->{
+            queryMovie() ;
+        });
         hb.getChildren().addAll(back, add,fresh,query);
         bord.setBottom(hb);
         Scene s = new Scene(bord, 1200,1000) ;
         return s ;
     }
 
+    //查询剧目信息
+    public void queryMovie() {
+           ProcessMvUI pm = new ProcessMvUI();
+           pm.query() ;
+    }
+
     //获取电影列表
     public GridPane getMovieList() {
         GridPane g = new GridPane() ;
         g.setVgap(10);
-        g.setHgap(80);
-        List<Movie> list = new LinkedList<>() ;
+        g.setHgap(50);
+        List<Movie> list ;
         MovieSrv ms = new MovieSrv() ;
         list =ms.fetchAllMovie() ;
         int col = 1 ;
@@ -102,6 +120,9 @@ public class MovieManageUI {
 
         ImageView iv = new ImageView() ;
         iv.setImage(im.getImage());
+        iv.setFitHeight(150);
+        iv.setFitWidth(120);
+        vb.setAlignment(Pos.CENTER);
         vb.getChildren().addAll(iv, new Text("电影名称:"+m.getPlay_name()),
                 new Text("电影类型:"+m.getPlay_type()),
                 new Text("影片时长:"+m.getPlay_Length()), new Text("票价:"+m.getPlay_ticket_price()));
@@ -127,6 +148,12 @@ public class MovieManageUI {
         SetSceneStyle.sceneStyle(s);
         win.setScene(s);
     }
+
+    public void addMovie() {
+        ProcessMvUI pm = new ProcessMvUI();
+        pm.addMovie() ;
+    }
+
     //修改电影信息
     public void modifyMv(Movie mv) {
         ProcessMvUI pm = new ProcessMvUI() ;

@@ -11,16 +11,32 @@ public class Employee implements Serializable {
 	private String password;
 	private String cName;
 	private String tel;
+	private int saleMoney ;
+//	int saleMoney ;
 
 	public int getEmp_no() {
 		return emp_no;
 	}
 
+	@Override
+	public String toString() {
+		return "Employee{" +
+				"access=" + access +
+				", id=" + id +
+				", name='" + name + '\'' +
+				", password='" + password + '\'' +
+				", cName='" + cName + '\'' +
+				", tel='" + tel + '\'' +
+				", saleMoney=" + saleMoney +
+				", emp_no=" + emp_no +
+				'}';
+	}
+
 	public void setEmp_no(int emp_no) {
 		this.emp_no = emp_no;
 	}
-
 	int emp_no ;
+
 
 	public int getSaleMoney() {
 		return saleMoney;
@@ -29,8 +45,6 @@ public class Employee implements Serializable {
 	public void setSaleMoney(int saleMoney) {
 		this.saleMoney = saleMoney;
 	}
-
-	private int saleMoney ;
 	public String getcName() {
 		return cName;
 	}
@@ -72,15 +86,6 @@ public class Employee implements Serializable {
 
 	public String getPassword() {
 		return password;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee{" +
-				"access=" + access +
-				", name='" + name + '\'' +
-				", password='" + password + '\'' +
-				'}';
 	}
 
 	public void setAccess(int access) {

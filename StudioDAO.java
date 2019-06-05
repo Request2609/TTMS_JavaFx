@@ -46,7 +46,7 @@ public class StudioDAO implements iStudioDAO {
 					+ stu.getName() + "', " + " studio_row_count = "
 					+ stu.getRowCount() + ", " + " studio_col_count = "
 					+ stu.getColCount() + ", " + " studio_introduction = '"
-					+ stu.getIntroduction() + "' ";
+					+ stu.getIntroduction() + "' ,"+"studio_status="+stu.getStatus();
 
 			sql += " where studio_id = " + stu.getID();
 			DBUtil db = new DBUtil();
@@ -83,7 +83,7 @@ public class StudioDAO implements iStudioDAO {
 		List<Studio> stuList = null;
 		stuList=new LinkedList<Studio>();
 		try {
-			String sql = "select studio_id, studio_name, studio_row_count, studio_col_count, studio_introduction from studio ";
+			String sql = "select studio_id, studio_name, studio_row_count, studio_col_count, studio_introduction, studio_status from studio ";
 			condt.trim();
 			if(!condt.isEmpty())
 				sql+= " where studio_id= " + condt;
@@ -105,6 +105,7 @@ public class StudioDAO implements iStudioDAO {
 					stu.setRowCount(rst.getInt("studio_row_count"));
 					stu.setColCount(rst.getInt("studio_col_count"));
 					stu.setIntroduction(rst.getString("studio_introduction"));
+					stu.setStatus(rst.getInt("studio_status"));
 					//加入到链表
 					stuList.add(stu);
 				}

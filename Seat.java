@@ -7,7 +7,18 @@ public class Seat {
     int studio_id ;
     int seat_row ;
     int seat_column ;
+    //0 没人  1已经订购 2.坏座位
     int seat_status ;
+    int tmp_seat_id ;
+
+    public int getTmp_seat_id() {
+        return tmp_seat_id;
+    }
+
+    public void setTmp_seat_id(int tmp_seat_id) {
+        this.tmp_seat_id = tmp_seat_id;
+    }
+
 
     public int getSeat_id() {
         return seat_id;

@@ -15,5 +15,7 @@ public class DAOFactory {
 	}
 	public static ScheduleDao createScheduleDao(){return new ScheduleDao() ;}
 	public static TypeDao createTypeDao() {return new TypeDao();} ;
+	public static SeatDao createSeatDao() { return new SeatDao() ;}
+	public static  TicketDao createTicketDao(){return new TicketDao() ;}
 
 }

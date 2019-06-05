@@ -61,7 +61,11 @@ public class UserDao implements iUserDao {
                 uu = new Employee() ;
                 uu.setName(rst.getString("emp_name"));
                 uu.setPassword(rst.getString("password"));
+                uu.setTel(rst.getString("emp_tel_num"));
+                uu.setId(rst.getInt("emp_id")) ;
                 uu.setAccess(rst.getInt("access"));
+                uu.setSaleMoney(rst.getInt("emp_sale_money"));
+
                 db.close(rst);
                 db.close();
                 return uu ;
@@ -95,7 +99,8 @@ public class UserDao implements iUserDao {
         try{
             String sql = "update employee set emp_name= '"+user.getName()+"'"+
                     " , emp_tel_num='"+user.getName()+"'"+", password= '"+user.getPassword()+"'"
-                    +"where emp_id =' "+user.getId()+"'";
+                    +"where emp_id ="+user.getId();
+            System.out.println(sql) ;
             DBUtil db = new DBUtil();
             db.openConnection();
             rtn=db.execCommand(sql);

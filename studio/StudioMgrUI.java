@@ -34,13 +34,13 @@ class StudioTable {
 	private JTable jt;
 
 	public StudioTable(JScrollPane jp) {
-		
+
 		DefaultTableModel tabModel=new DefaultTableModel(){
 			private static final long serialVersionUID = 1L;
 
-			@Override              
+			@Override
 			public boolean isCellEditable(int row,int column){
-				return false;              
+				return false;
 			};
 		};
 		tabModel.addColumn("id");
@@ -53,7 +53,7 @@ class StudioTable {
 
 		//设置各列的宽度
 	    TableColumnModel columnModel = jt.getColumnModel();
-	    
+
 	    //隐藏ID这一列
         TableColumn column = columnModel.getColumn(0);
         column.setMinWidth(0);
@@ -72,7 +72,7 @@ class StudioTable {
 		jp.add(jt);
 		jp.setViewportView(jt);
 	}
-	
+
 	public Studio getStudio() {
 
 		int rowSel=jt.getSelectedRow();
@@ -92,15 +92,15 @@ class StudioTable {
 		else{
 			return null;
 		}
-			
+
 	}
-	
+
 	// 创建JTable
 	public void showStudioList(List<Studio> stuList) {
 		try {
 			DefaultTableModel tabModel = (DefaultTableModel) jt.getModel();
 			tabModel.setRowCount(0);
-			
+
 			Iterator<Studio> itr = stuList.iterator();
 			while (itr.hasNext()) {
 				Studio stu = itr.next();
@@ -122,7 +122,7 @@ class StudioTable {
 
 public class StudioMgrUI extends MainUITmpl {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel ca1 = null; // 界面提示
@@ -134,12 +134,12 @@ public class StudioMgrUI extends MainUITmpl {
 
 	// 查找，编辑和删除按钮
 	private JButton btnAdd, btnEdit, btnDel, btnQuery;
-	
+
 	StudioTable tms; //显示演出厅列表
 
 
 	public StudioMgrUI() {
-		
+
 	}
 
 	// To be override by the detailed business block interface
@@ -202,16 +202,16 @@ public class StudioMgrUI extends MainUITmpl {
 		});
 		contPan.add(btnDel);
 		contPan.add(ca1);
-		
+
 		tms = new StudioTable(jsc);
-		
+
 		showTable();
 	}
 
 	private void btnAddClicked() {
 
 		StudioAddUI addStuUI=null;
-		
+
 		addStuUI = new StudioAddUI();
 		addStuUI.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		addStuUI.setWindowName("添加演出厅");
@@ -227,9 +227,9 @@ public class StudioMgrUI extends MainUITmpl {
 		Studio stud = tms.getStudio();
 		if(null== stud){
 			JOptionPane.showMessageDialog(null, "请选择要修改的演出厅");
-			return; 
+			return;
 		}
-		
+
 		StudioEditUI modStuUI = new StudioEditUI(stud);
 		modStuUI.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		modStuUI.setWindowName("修改演出厅");
@@ -241,16 +241,16 @@ public class StudioMgrUI extends MainUITmpl {
 
 		if (modStuUI.getReturnStatus()) {
 			showTable();
-		}	
+		}
 	}
 
 	private void btnDelClicked() {
 		Studio stud = tms.getStudio();
 		if(null== stud){
 			JOptionPane.showMessageDialog(null, "请选择要删除的演出厅");
-			return; 
-		}		
-		
+			return;
+		}
+
 		int confirm = JOptionPane.showConfirmDialog(null, "确认删除所选？", "删除", JOptionPane.YES_NO_OPTION);
 		if (confirm == JOptionPane.YES_OPTION) {
 			StudioSrv stuSrv = new StudioSrv();

@@ -19,6 +19,7 @@ public class ScheduleDao implements iScheduleDao {
             condt.trim();
             if(!condt.isEmpty())
                 sql+= " where " + condt;
+            System.out.println(sql) ;
             DBUtil db = new DBUtil();
             if(!db.openConnection()){
                 System.out.print("fail to connect database");
@@ -34,7 +35,7 @@ public class ScheduleDao implements iScheduleDao {
                     sched.setSche_id(rst.getInt("sched_id"));
                     sched.setStudio_id(rst.getInt("studio_id"));
                     sched.setPlay_id(rst.getInt("play_id"));
-                    sched.setSched_time(rst.getDate("sched_time"));
+                    sched.setSched_time(rst.getString("sched_time"));
                     sched.setSched_ticket_price(rst.getInt("sched_ticket_price"));
                     //加入到链表
                     list.add(sched);

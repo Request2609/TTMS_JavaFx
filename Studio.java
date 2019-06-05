@@ -7,7 +7,18 @@ public class Studio {
 	private int rowCount=0;
 	private int colCount=0;
 	private String introduction="";
-	
+	//0表示未被占用 1表示占用
+	int status = 0;
+
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public void setID(int ID){
 		this.id=ID;
 	}

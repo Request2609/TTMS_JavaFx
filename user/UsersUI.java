@@ -106,7 +106,7 @@ public class UsersUI extends Application {
         vb.setSpacing(10);
 
         Label lb = new Label("演出厅管理"+" "+"当前在线经理："+user.getName()+" "+"经理ID:"+user.getId());
-        lb.setStyle("-fx-background-color: #987;-fx-font-size:20");
+        lb.setStyle("-fx-background-color: #987;-fx-font-size:30");
 
         GridPane gp = new GridPane() ;
         gp.setStyle("-fx-background-color:#EBF5E4; -fx-border-color: #B4D6A9;");
@@ -116,17 +116,13 @@ public class UsersUI extends Application {
 
         StudioSrv ss = new StudioSrv() ;
         List<Studio>list = ss.FetchAll() ;
-        Label Id =new  Label("演出厅ID") ;
-        Label name = new Label("名称");
-        Label row = new Label("排数");
-        Label column = new Label("列数");
-        Label intro = new Label("介绍");
 
         gp.add(new Text("演出厅ID"), 1,1) ;
         gp.add(new Text("名称"), 2,1);
         gp.add(new Text("排数"),3,1);
         gp.add(new Text("列数"),4,1);
         gp.add(new Text("介绍"),5,1);
+        gp.add(new Text("状态"), 6,1) ;
         int cols = 1;
         int rows = 2 ;
         for(Studio s : list) {
@@ -147,8 +143,15 @@ public class UsersUI extends Application {
             gp.add(new Text(s.getRowCount()+""), cols+2,rows) ;
             gp.add(new Text(s.getColCount()+""), cols+3,rows) ;
             gp.add(new Text(s.getIntroduction()+""), cols+4,rows) ;
-            gp.add(delete, cols+5, rows) ;
-            gp.add(modify, cols+6, rows) ;
+            if(s.getStatus() == 0) {
+                gp.add(new Text("闲置"), cols+5, rows);
+            }
+            if(s.getStatus() == 1) {
+                gp.add(new Text("已安排"), cols+5, rows) ;
+            }
+
+            gp.add(delete, cols+6, rows) ;
+            gp.add(modify, cols+7, rows) ;
             rows++ ;
         }
 
@@ -223,6 +226,9 @@ public class UsersUI extends Application {
     public void addStudio() {
         ProcessStudioUI ps = new ProcessStudioUI() ;
         ps.addStudioUI();
+//        Scene s = updateScene(users) ;
+//        SetSceneStyle.sceneStyle(s);
+//        userWindow.setScene(s);
     }
 
     public void modifyStudio(Studio s) {
@@ -283,9 +289,9 @@ public class UsersUI extends Application {
         vb.setSpacing(50);
         vb.setPadding(new Insets(20,20,20,20)) ;
         vb.setAlignment(Pos.CENTER);
-        Label lb = new Label("用户管理     管理员名称："+user.getName());
+        Label lb = new Label("用户管理     管理员名称："+user.getName()+"   管理员ID:"+user.getId());
         lb.setStyle("-fx-font-size:50");
-        lb.setStyle("-fx-background-color: #C75F80");
+        lb.setStyle("-fx-background-color: #987");
         HBox hbLb = new HBox() ;
         hbLb.setAlignment(Pos.CENTER);
         hbLb.getChildren().add(lb) ;
@@ -301,7 +307,9 @@ public class UsersUI extends Application {
         Button addButton = new Button("添加用户") ;
         Button update = new Button("刷新页面") ;
         Button quit = new Button("退  出") ;
-
+        quit.setOnMouseClicked(e->{
+            userWindow.close() ;
+        });
         setButton(addButton ,quit, update) ;
         hb.setSpacing(50);
         hb.setPadding(new Insets(20,20,100,100));
@@ -314,17 +322,12 @@ public class UsersUI extends Application {
 
     void setButton(Button addButton ,Button quit, Button update) {
         addButton.setMinWidth(150);
-//        fetchUser.setMinWidth(150);
         quit.setMinWidth(150);
         update.setMinWidth(150);
         addButton.setOnMouseClicked(e->{
             UserSceneUI sce = new UserSceneUI();
             Employee uu = new Employee() ;
             sce.addUser(uu);
-            Scene s  = updateScene(users);
-            SetSceneStyle.sceneStyle(s);
-            userWindow.setScene(s);
-            userWindow.show();
         });
 
         update.setOnAction(e->{

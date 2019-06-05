@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import xupt.se.ttms.SceneStyle.SetSceneStyle;
 import xupt.se.ttms.model.Employee;
 import xupt.se.ttms.service.LoginedUser;
 
@@ -151,7 +152,8 @@ public class UserSceneUI extends Application {
         });
         hb.getChildren().addAll(sure, cancer) ;
         vb.getChildren().addAll(name, pass, pNum, access, hb) ;
-        Scene sne = new Scene(vb, 400,400) ;
+        Scene sne = new Scene(vb, 600,600) ;
+        SetSceneStyle.sceneStyle(sne);
         win.setScene(sne);
         win.show();
     }
@@ -210,7 +212,6 @@ public class UserSceneUI extends Application {
         if (sucess) {
             UsersUI ui = new UsersUI();
             if(user.getAccess() == 0){
-
                 ui.getUserAdminSne(user, windows) ;
             }
             else if(user.getAccess() == 2){
@@ -223,7 +224,7 @@ public class UserSceneUI extends Application {
 
         else {
             ConfirmBox con = new ConfirmBox() ;
-            con.display("登陆错误");
+            con.displaySuccess("登陆错误");
         }
     }
 

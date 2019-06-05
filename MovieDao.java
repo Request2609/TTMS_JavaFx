@@ -10,6 +10,30 @@ import java.util.List;
 
 public class MovieDao implements iMovieDao {
 
+    public int insert(Movie mv) {
+        int ret = 0 ;
+        try {
+            DBUtil db = new DBUtil();
+            String sql = "insert play(play_name, play_length, play_type, play_ticket_price,  play_status, path,play_introduction)values ('"
+                    + mv.getPlay_name()
+                    + "', "
+                    + mv.getPlay_Length()
+                    + ", '" +mv.getPlay_type()
+                    + "'," + mv.getPlay_ticket_price()+","+mv.getPlay_status()+",'"+mv.getPath()+"','"+mv.getPlay_introduction()+ "' )";
+            db.openConnection();
+            ResultSet rst = db.getInsertObjectIDs(sql);
+            if (rst!=null && rst.first()) {
+                mv.setPlay_id(rst.getInt(1));
+            }
+            db.close(rst);
+            db.close();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public List<Movie> select(String condt) {
         List<Movie> list  = new LinkedList<Movie>() ;
         try {
@@ -53,6 +77,7 @@ public class MovieDao implements iMovieDao {
         //返回链表
         return list;
     }
+
     @Override
     public int delete(int id) {
         int rtn=0;
@@ -68,6 +93,7 @@ public class MovieDao implements iMovieDao {
         }
         return rtn;
     }
+
     @Override
     public int modify(Movie mv) {
         int rtn=0;

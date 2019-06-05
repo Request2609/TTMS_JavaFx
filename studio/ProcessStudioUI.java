@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import xupt.se.ttms.SceneStyle.SetSceneStyle;
 import xupt.se.ttms.model.Studio;
 import xupt.se.ttms.service.StudioSrv;
 import xupt.se.ttms.view.user.ConfirmBox;
@@ -58,7 +59,8 @@ public class ProcessStudioUI {
         hb.setAlignment(Pos.CENTER);
         hb.getChildren().addAll(ok, cancer) ;
         vb.getChildren().addAll(name,col_count,row_count,studio_intro, hb) ;
-        Scene sne = new Scene(vb, 400,400);
+        Scene sne = new Scene(vb, 600,600);
+        SetSceneStyle.sceneStyle(sne);
         window.setScene(sne);
         window.show() ;
     }

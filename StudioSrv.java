@@ -33,7 +33,7 @@ public class StudioSrv {
 	}
 	
 	public List<Studio> FetchAll(){
-		List<Studio>ls = new LinkedList<>();
+		List<Studio>ls ;
 		ls = stuDAO.select("") ;
 		return ls ;
 	}

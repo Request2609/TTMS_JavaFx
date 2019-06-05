@@ -23,32 +23,7 @@ public class ConfirmBox extends Application {
     boolean result ;
     Stage window ;
 
-    public boolean display(String title) {
 
-        window = new Stage() ;
-        VBox layout = new VBox() ;
-
-        layout.setSpacing(50);
-        layout.setAlignment(Pos.CENTER);
-        window.setTitle(title);
-
-        Button yes_bt1 = new Button("重新登录") ;
-        Button no_bt1 = new Button("找回密码") ;
-
-        yes_bt1.setOnAction(e->{
-            window.close() ;
-        });
-
-        no_bt1.setOnAction(e->{
-            getScene() ;
-        });
-        layout.getChildren().add(yes_bt1) ;
-        layout.getChildren().add(no_bt1) ;
-        Scene sne = new Scene(layout,500,500) ;
-        window.setScene(sne);
-        window.show();
-        return false ;
-    }
 
     public void findPassScene(Stage window) {
 
