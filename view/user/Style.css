@@ -1,0 +1,74 @@
+.root{
+    -fx-background-color: #928;
+    -fx-font-size:20 ;
+    -fx-background-image: url(../Plan/4.jpg);
+    -fx-background-size:cover;
+}
+
+.label{
+    -fx-text-fill:linear-gradient(to right,#ab4642,#bc23fc);
+}
+.radio-button{
+    -fx-background-size: 100;
+    -fx-text-fill:linear-gradient(to right,#ab4642,#bc23fc);
+    /*-fx-background-color: */
+    -fx-font-weight:bold;
+    -fx-font-size:20 ;
+    /*-fx-background-color: #987;*/
+    -fx-font-family: "宋体";
+}
+
+#welcome-text {
+    -fx-text-fill:linear-gradient(to right,#ab4642,#bc23fc);
+    -fx-font-size: 32px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #818181;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+/*-fx-background-color:#EBF5E4; -fx-border-color: #B4D6A9;"*/
+#actiontarget {
+    -fx-fill: FIREBRICK;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+.button{
+    /*-fx-horizontal-grid-lines-visible: ;*/
+    /*混合颜色样式*/
+    -fx-background-color: linear-gradient(#dd8190,#B4D6A9);
+    -fx-text-fill: #ffffff;
+    /*圆形按钮*/
+    -fx-background-radius: 6;
+    -fx-background-size: 120;
+    -fx-border-image-repeat: no-repeat;
+}
+.text-field{
+    -fx-max-width: 350;
+    -fx-max-height: 50;
+}
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+/*使组件能设置自己的属性*/
+.button-blue{
+    -fx-background-color: linear-gradient(#dc9634,#bc23fc);
+    -fx-text-fill: #198;
+    -fx-background-radius: 6;
+}
+
+#bold-label{
+    /*-fx-highlight-text-fill: ;*/
+    -fx-text-fill: #dd8190;
+    -fx-font-weight:bold;
+    -fx-font-size:30 ;
+}
+
+#gridpane {
+    -fx-text-fill: linear-gradient(#D63747,#dc9634);
+
+    -fx-background-color:#EBF5E4;
+
+    -fx-border-color: #B4D6A9;
+    -fx-font-family: "AR PL UKai CN";
+
+}
