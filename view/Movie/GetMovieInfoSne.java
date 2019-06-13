@@ -117,7 +117,7 @@ public class GetMovieInfoSne {
         List<Movie> list = ms.fetchAllMovie() ;
 
         gp.setVgap(20);
-        gp.setHgap(20);
+        gp.setHgap(40);
         gp.setPadding(new Insets(20,20,20,20));
         int count = 1 ;
         int row = 1 ,col = 1 ;

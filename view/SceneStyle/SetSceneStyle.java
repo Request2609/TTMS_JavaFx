@@ -1,6 +1,7 @@
 package xupt.se.ttms.view.SceneStyle;
 
 import javafx.scene.Scene;
+import sun.rmi.runtime.Log;
 import xupt.se.ttms.view.user.LoginUI;
 import xupt.se.ttms.view.user.UserSceneUI;
 

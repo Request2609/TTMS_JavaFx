@@ -15,14 +15,13 @@ public class LoginUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         windows = primaryStage ;
-        DeleteSchedule ds = new DeleteSchedule() ;
         windows.setX(200) ;
         windows.setY(100) ;
         windows.setTitle("欢迎使用优乐影院管理系统");
-        //执行删除演出计划任务
+        DeleteSchedule ds = new DeleteSchedule() ;
         ds.setTask();
+        //执行删除演出计划任务
         UserSceneUI usu = new UserSceneUI();
         usu.getLogInScene(windows);
     }

@@ -34,6 +34,7 @@ public class UserSceneUI extends Application {
     public final ToggleGroup group = new ToggleGroup();
     @Override
     public void start(Stage primaryStage) throws Exception {
+
     }
 
     public void getLogInScene(Stage pri) {

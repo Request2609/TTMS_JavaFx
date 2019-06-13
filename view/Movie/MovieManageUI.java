@@ -91,7 +91,6 @@ public class MovieManageUI {
                 col = 1 ;
             }
         }
-//        g.setStyle("-fx-background-color: #EBF5E4;") ;
         return g ;
     }
 
@@ -125,15 +124,15 @@ public class MovieManageUI {
                 new Text("影片时长:"+m.getPlay_Length()), new Text("票价:"+m.getPlay_ticket_price()));
         System.out.println("电影状态："+m.getPlay_status());
         if(m.getPlay_status() == 0) {
-               vb.getChildren().add(new Text("剧目已经下架")) ;
+               vb.getChildren().add(new Text("已经下架")) ;
         }
 
         if(m.getPlay_status() == 1) {
-            vb.getChildren().add(new Text("剧目正在上映")) ;
+            vb.getChildren().add(new Text("即将上映")) ;
         }
 
         if(m.getPlay_status() == 2) {
-            vb.getChildren().add(new Text("剧目即将上映")) ;
+            vb.getChildren().add(new Text("正在上映")) ;
         }
         vb.setStyle("-fx-background-color: #989");
         vb.getChildren().add(hb) ;
